@@ -6,7 +6,7 @@ resource "aws_launch_template" "launch-template" {
   image_id               = data.aws_ami.amazon_linux_2.id
   instance_type          = var.aws_instance_type_t2micro
   vpc_security_group_ids = [aws_security_group.aws_webserver_sg.id, aws_security_group.aws_private_ssh_sg.id]
-  user_data              = base64encode(templatefile("userdata.sh", { rds_endpoint = replace(aws_db_instance.mysql.endpoint, ":3306", ""), efs_id = aws_efs_file_system.wordpress.id, aws_region = var.region_us_west_2, db_password = var.db_password }))
+  user_data              = base64encode(templatefile("userdata.sh", { rds_endpoint = replace(aws_db_instance.mysql.endpoint, ":3306", ""), efs_id = aws_efs_file_system.wordpress.id, aws_region = var.region_us_east_1, db_password = var.db_password }))
   key_name               = var.key_pair_name
 }
 
