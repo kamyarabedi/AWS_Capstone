@@ -8,7 +8,7 @@ resource "aws_db_instance" "mysql" {
   allocated_storage      = 20
   db_name                = "wordpress"
   engine                 = "mysql"
-  engine_version         = "8.0.35"
+  engine_version         = "8.0.44"
   instance_class         = "db.t3.micro"
   identifier             = "kamyar-rds-db"
   username               = "wordpressuser"
