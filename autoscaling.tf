@@ -7,7 +7,7 @@ resource "aws_launch_template" "launch-template" {
   instance_type          = var.aws_instance_type_t2micro
   vpc_security_group_ids = [aws_security_group.aws_webserver_sg.id, aws_security_group.aws_private_ssh_sg.id]
   user_data              = base64encode(templatefile("userdata.sh", { rds_endpoint = replace(aws_db_instance.mysql.endpoint, ":3306", ""), efs_id = aws_efs_file_system.wordpress.id, aws_region = var.region_us_east_1, db_password = var.db_password }))
-  key_name               = var.key_pair_name
+  key_name               = aws_key_pair.capstone.key_name
 }
 
 # Auto Scaling Group
@@ -20,7 +20,7 @@ resource "aws_autoscaling_group" "autoscaling-group" {
   }
   desired_capacity = 2 # 1 for testing
   min_size         = 2 # 1 for testing
-  max_size         = 3 # 2 for testing
+  max_size         = 4 # 2 for testing
 
   target_group_arns   = [aws_lb_target_group.capstone_tg.arn]
   vpc_zone_identifier = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]

@@ -1,0 +1,13 @@
+# SSH private keys
+*.pem
+
+# Terraform local files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+
+# Sensitive Terraform variables
+*.tfvars
+*.tfvars.json

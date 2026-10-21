@@ -20,7 +20,7 @@ resource "aws_instance" "bastion" {
   availability_zone      = var.aws_availability_zone_a
   vpc_security_group_ids = [aws_security_group.aws_ssh_sg.id]
   subnet_id              = aws_subnet.public_subnet_1.id
-  key_name               = var.key_pair_name # Create new key if using different region than us-west-2
+  key_name                = aws_key_pair.capstone.key_name
   user_data              = file("bastion-userdata.sh")
   tags = {
     Name = "kamyar-AwsCapstoneBastionHost"

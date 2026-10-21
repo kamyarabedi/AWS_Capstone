@@ -23,11 +23,13 @@ variable "aws_instance_type_t2micro" {
 }
 
 ## Extra variables
+
 variable "key_pair_name" {
-  description = "Existing EC2 SSH key pair in us-east-1"
-  type = string
-  default = "vockey"
+  description = "EC2 Key Pair name"
+  type        = string
+  default     = "capstone-key"
 }
+
 variable "ssh_ingress_cidr" {
   description = "Your trusted public IPv4 CIDR for bastion SSH (set explicitly)"
   type = string
